@@ -38,7 +38,7 @@ const dict = {
   "form.descPlaceholder":
     "e.g. A page about my cat — cute, pink, with a photo wall…",
   "form.emailLabel": "UNNC email — prefix only",
-  "form.emailPh": "li.zhou",
+  "form.emailPh": "hvysh2",
   "form.domainLabel": "Pick a web address",
   "form.domainChecking": "Checking availability…",
   "form.domainFree": "Available",

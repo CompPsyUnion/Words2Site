@@ -39,7 +39,7 @@ const dict: Record<keyof typeof en, string> = {
   "form.descPlaceholder":
     "比如：做一个介绍我家猫咪的网页，粉色可爱风，要有照片墙…",
   "form.emailLabel": "宁诺邮箱（只填前缀）",
-  "form.emailPh": "li.zhou",
+  "form.emailPh": "hvysh2",
   "form.domainLabel": "为你的网页选个网址",
   "form.domainChecking": "正在检查是否可用…",
   "form.domainFree": "可用",
