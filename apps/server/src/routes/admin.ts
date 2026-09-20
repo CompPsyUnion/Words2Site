@@ -119,6 +119,18 @@ adminRouter.post("/tasks/:id/delete", async (req, res) => {
   res.json({ ok: true });
 });
 
+/** 大屏展示开关：翻转 is_public（只影响大屏可见性，站点、凭证、域名都不动） */
+adminRouter.post("/tasks/:id/visibility", (req, res) => {
+  const t = tasks.get(req.params.id);
+  if (!t) {
+    res.status(404).json({ error: "任务不存在" });
+    return;
+  }
+  const show = (req.body as { show?: boolean } | undefined)?.show === true;
+  tasks.update({ id: t.id, is_public: show ? 1 : 0 });
+  res.json({ ok: true, is_public: show ? 1 : 0 });
+});
+
 /** 会话池状态（SessionBoard） */
 adminRouter.get("/sessions", (_req, res) => {
   res.json(sessionManager.stats());

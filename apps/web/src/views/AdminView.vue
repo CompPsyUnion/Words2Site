@@ -120,6 +120,15 @@ async function kill(sid: string) {
   }).catch(() => {});
   void refresh();
 }
+/** 大屏展示开关（is_public）：撤下只影响大屏可见性，站点与凭证不受影响 */
+async function toggleScreen(id: string, show: boolean) {
+  await api(`/api/admin/tasks/${id}/visibility`, {
+    method: "POST",
+    headers: { ...authHeader(), "Content-Type": "application/json" },
+    body: JSON.stringify({ show }),
+  }).catch(() => {});
+  void refresh();
+}
 /** SessionBoard 注入的日志拉取器（带管理凭证） */
 function fetchSessionLog(taskId: string): Promise<SessionLogTail> {
   return api(`/api/admin/tasks/${taskId}/session-log`, {
@@ -393,6 +402,13 @@ const statusVariant: Record<
                   variant="ghost"
                   @click="skip(t.id)"
                   >跳过</Button
+                >
+                <Button
+                  v-if="t.status === 'published' && !t.removed_at"
+                  size="sm"
+                  variant="ghost"
+                  @click="toggleScreen(t.id, !t.is_public)"
+                  >{{ t.is_public ? "撤下大屏" : "上大屏" }}</Button
                 >
                 <Button
                   v-if="t.status === 'published' && !t.removed_at"
